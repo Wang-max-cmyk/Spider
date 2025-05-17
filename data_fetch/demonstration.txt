@@ -1,0 +1,5 @@
+1 代码中headers和cookies需要根据使用浏览器和主机变化,否则403错误
+2 代码实行需要安装beautifulsoup4和requests python组件
+3 命令行代码 python3 book_comment_fetch.py -m/-b 影片名或书名 评论个数 P/F 其中P为已经阅读的读者评论，F为想要阅读的读者评论 比如： python3 book_comment_fetch.py
+ -m 红楼梦 50 F
+4 此代码一次只能爬取一个作品书评，生成一个json文件，其文件名字为(movie/book)_作品名_作品id.json 比如：book_红楼梦_114514.json
