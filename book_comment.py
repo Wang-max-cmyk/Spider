@@ -4,6 +4,7 @@ import os
 import logging
 import time
 import json as json_lib
+from flask import Response
 
 app = Sanic("mySanic")
 
@@ -83,7 +84,7 @@ async def get_books_info(request):
 async def get_book_comments(request):
     # 获取请求参数
     filename = request.args.get("filename")
-    book_id = request.args.get("book_id")
+    book_id = request.args.get("book_id",None)
 
     # 参数校验（filename必填）
     if not filename:
@@ -96,51 +97,47 @@ async def get_book_comments(request):
 
     try:
         # 读取并解析JSON文件
-        with open(file_path, "r", encoding="UTF-8") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             raw_comments = json_lib.load(file)
-        
-        # 按book_id分组评论
-        books = {}
-        for comment in raw_comments:
-            current_book_id = comment.get("book_id")
-            if current_book_id not in books:
-                books[current_book_id] = {
-                    "book_id": current_book_id,
-                    "comment_list": []
-                }
-            # 提取示例中的字段（严格对齐）
-            formatted_comment = {
-                "comment_id": comment.get("comment_id"),
-                "comment_username": comment.get("comment_username"),
-                "comment_timestamp": comment.get("comment_timestamp"),
-                "comment_location": comment.get("comment_location"),
-                "comment_rating": comment.get("comment_rating"),
-                "comment_content": comment.get("comment_content"),
-                "comment_isuseful": comment.get("comment_isuseful")
-            }
-            books[current_book_id]["comment_list"].append(formatted_comment)
-
-        # 转换为列表格式
-        book_list = list(books.values())
-
-        # 按book_id过滤（如果提供）
-        if book_id:
-            filtered_books = [
-                book for book in book_list 
-                if str(book["book_id"]) == str(book_id)
-            ]
-            response_data = filtered_books
-        else:
-            response_data = book_list
-
-        # 直接返回列表（不嵌套在 "data" 字段中）
-        return json(response_data)
-
-    except json_lib.JSONDecodeError:
-        return json({"code": 0, "msg": "Invalid JSON format", "data": None})
     except Exception as e:
-        return json({"code": 0, "msg": f"Error: {str(e)}", "data": None})
-        
+        return json({
+            "code": 0,
+            "msg": f"Failed to parse file: {str(e)}",
+            "data": None
+        })
+
+    # 聚合为 book_id => comment_list 的结构
+    book_comments = {}
+    for comment in raw_comments:
+        bid = comment.get("book_id")
+        if not bid:
+            continue
+        book_comments.setdefault(bid, []).append(comment)
+
+    # 如果指定了 book_id，返回对应的评论
+    if book_id:
+        data = {
+            "book_id": book_id,
+            "comment_list": book_comments.get(book_id, [])
+        }
+    else:
+        # 否则返回所有评论信息，每本书一个 entry
+        data = []
+        for bid, comments in book_comments.items():
+            data.append({
+                "book_id": bid,
+                "comment_list": comments
+            })
+
+    return Response( 
+        json_lib.dumps({
+            "code": 1,
+            "msg": "query successfully!",
+            "data": data
+        },ensure_ascii=False,indent=2),
+        mimetype='application/json'
+    )
+ 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
 
