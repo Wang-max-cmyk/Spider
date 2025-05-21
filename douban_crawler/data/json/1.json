@@ -1,0 +1,152 @@
+[
+  {
+    "is_positive": 1,
+    "positive_probs": 0.564,
+    "negative_probs": 0.436
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.6657,
+    "negative_probs": 0.3343
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.1761,
+    "negative_probs": 0.8239
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5258,
+    "negative_probs": 0.4742
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.1827,
+    "negative_probs": 0.8173
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.2643,
+    "negative_probs": 0.7357
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.416,
+    "negative_probs": 0.584
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.1376,
+    "negative_probs": 0.8624
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.2327,
+    "negative_probs": 0.7673
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5995,
+    "negative_probs": 0.4005
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.1939,
+    "negative_probs": 0.8061
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.4441,
+    "negative_probs": 0.5559
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.6018,
+    "negative_probs": 0.3982
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5256,
+    "negative_probs": 0.4744
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.7549,
+    "negative_probs": 0.2451
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5554,
+    "negative_probs": 0.4446
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.8917,
+    "negative_probs": 0.1083
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.6398,
+    "negative_probs": 0.3602
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.4013,
+    "negative_probs": 0.5987
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.6825,
+    "negative_probs": 0.3175
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.416,
+    "negative_probs": 0.584
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5647,
+    "negative_probs": 0.4353
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5872,
+    "negative_probs": 0.4128
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.5843,
+    "negative_probs": 0.4157
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.6324,
+    "negative_probs": 0.3676
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.7928,
+    "negative_probs": 0.2072
+  },
+  {
+    "is_positive": 1,
+    "positive_probs": 0.7983,
+    "negative_probs": 0.2017
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.4592,
+    "negative_probs": 0.5408
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.3525,
+    "negative_probs": 0.6475
+  },
+  {
+    "is_positive": 0,
+    "positive_probs": 0.4892,
+    "negative_probs": 0.5108
+  }
+]
