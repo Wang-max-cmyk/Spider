@@ -5,7 +5,7 @@ from modelscope.pipelines import pipeline
 from modelscope.utils.constant import Tasks
 
 if __name__ == '__main__':
-    input_path = "input/movie_comment.json"
+    input_path = "../data_fetch/movie_红楼梦_1864810.json"
     if not os.path.exists(input_path):
         print({"code": 0, "msg": "file is not exists"})
         exit(1)
@@ -17,6 +17,7 @@ if __name__ == '__main__':
     with open(input_path, encoding='utf-8') as f:
         data = json.load(f)
         comment_contents = [item.get("comment_content", "") for item in data]
+        comment_id=[item.get("comment_id","") for item in data]
 
     # 加载情感分析模型
     semantic_cls = pipeline(Tasks.text_classification, 'iic/nlp_structbert_sentiment-classification_chinese-tiny')
@@ -24,13 +25,16 @@ if __name__ == '__main__':
 
     # 生成输出结果
     output_data = []
-    for item in result:
+    for i in range(len(result)):
+        item=result[i]
+        id = comment_id[i]
         # 识别正负面标签
         sorted_labels_scores = sorted(zip(item['labels'], item['scores']), key=lambda x: x[0] == '正面', reverse=True)
         positive_label, positive_probs = sorted_labels_scores[0]
         negative_label, negative_probs = sorted_labels_scores[1]
         is_positive = 1 if positive_probs >= negative_probs else 0
         entry = {
+            "comment_id":id,
             "is_positive": is_positive,
             "positive_probs": round(positive_probs, 4),
             "negative_probs": round(negative_probs, 4)
